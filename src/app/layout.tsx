@@ -9,6 +9,15 @@ import "@mantine/core/styles.css";
 import "./globals.css";
 import AppShell from "@/components/layout/shell";
 
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  display: "swap",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
+});
+
 export const metadata: Metadata = {
   title: "Clickup Clone",
   description: "Clickup clone for unitfactor",
@@ -25,7 +34,7 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
 
-      <body>
+      <body className={`${inter.variable} font-sans antialiased`}>
         <MantineProvider>
           <main>
             <AppShell>{children}</AppShell>

@@ -3,15 +3,35 @@ import clsx from "clsx";
 import {
   CircleEllipsis,
   ClipboardCheck,
+  House,
   Inbox,
-  InboxIcon,
   LayoutDashboard,
+  type LucideIcon,
   MessageSquareMore,
   PanelRightOpen,
+  Plus,
   Presentation,
 } from "lucide-react";
-import Link from "next/link";
 import SidebarLink from "../SidebarLinks";
+import { ActionIcon } from "@mantine/core";
+
+type SidebarLinkItem = {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+};
+
+const sidebarLinks: SidebarLinkItem[] = [
+  { href: "/home", label: "Home", icon: House },
+  { href: "/inbox", label: "Inbox", icon: Inbox },
+  { href: "/chat", label: "Chat", icon: MessageSquareMore },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/whiteboards", label: "Whiteboards", icon: Presentation },
+  { href: "/forms", label: "Forms", icon: ClipboardCheck },
+  { href: "/more", label: "More", icon: CircleEllipsis },
+  { href: "/create", label: "Create Space", icon: Plus },
+];
+
 export default function Sidebar({
   expanded,
   toggleSidebar,
@@ -23,48 +43,32 @@ export default function Sidebar({
     <div
       id="sidebar"
       className={clsx(
-        "bg-gray-100 h-full w-full",
-        expanded ? "max-w-50" : "max-w-10"
+        "bg-white h-full w-full transition-all duration-200 overflow-hidden",
+        expanded ? "max-w-52" : "max-w-13"
       )}
     >
       <div className="flex justify-end p-2">
-        <button type="button" onClick={toggleSidebar}>
-          <PanelRightOpen />
-        </button>
+        <ActionIcon
+          size={"lg"}
+          variant="subtle"
+          type="button"
+          radius={"md"}
+          onClick={toggleSidebar}
+        >
+          <PanelRightOpen className="cursor-pointer w-4/6 h-4/6 text-neutral-500" />
+        </ActionIcon>
       </div>
 
-      <div className="mx-3 flex flex-col space-y-2">
-        <SidebarLink href="/inbox" label="Inbox" icon={<InboxIcon />}>
-          <span>Inbox</span>
-        </SidebarLink>
-
-        <SidebarLink
-          href="/chat"
-          label="Chat"
-          icon={<MessageSquareMore />}
-        ></SidebarLink>
-
-        <SidebarLink
-          href="/dashboard"
-          label="Dashboard"
-          icon={<LayoutDashboard />}
-        ></SidebarLink>
-        <SidebarLink
-          href="/whiteboards"
-          label="Whiteboards"
-          icon={<Presentation />}
-        ></SidebarLink>
-        <SidebarLink
-          href="/forms"
-          label="Forms"
-          icon={<ClipboardCheck />}
-        ></SidebarLink>
-
-        <SidebarLink
-          href="/more"
-          label="More"
-          icon={<CircleEllipsis />}
-        ></SidebarLink>
+      <div className="px-2 flex flex-col space-y-2">
+        {sidebarLinks.map(({ href, label, icon }) => (
+          <SidebarLink
+            expanded={expanded}
+            key={href}
+            href={href}
+            label={label}
+            icon={icon}
+          />
+        ))}
       </div>
     </div>
   );

@@ -2,30 +2,38 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import clsx from "clsx";
+import { type LucideIcon } from "lucide-react";
 
 type SidebarLinkProps = {
   href: string;
   label: string;
-  icon: React.ReactNode;
+  icon: LucideIcon;
+  expanded: boolean;
 };
 
-export default function SidebarLink({ href, label, icon }: SidebarLinkProps) {
+export default function SidebarLink({
+  href,
+  label,
+  icon: Icon,
+  expanded,
+}: SidebarLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === href;
 
   return (
     <Link
       href={href}
-      className={clsx(
-        "flex items-center gap-3 p-2 rounded transition-colors",
-        isActive
-          ? "bg-blue-200 text-blue-800 hover:bg-gray-200"
-          : "text-gray-800 hover:bg-gray-200 active:bg-blue-200"
-      )}
+      data-expanded={expanded}
+      className={
+        "flex items-center gap-2 p-2 rounded-md transition-colors text-sm data-active:font-medium hover:bg-neutral-100 data-active:bg-teal-100 data-active:text-teal-700 data-active:hover:bg-neutral-100 "
+      }
+      {...(isActive && { "data-active": true })}
     >
-      <span className="w-5 h-5">{icon}</span>
-      <span>{label}</span>
+      <Icon
+        size={expanded ? 16 : 20}
+        className="transition-all duration-200 shrink-0"
+      />
+      {expanded ? <span>{label}</span> : null}
     </Link>
   );
 }
