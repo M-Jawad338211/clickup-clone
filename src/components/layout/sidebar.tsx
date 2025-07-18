@@ -8,14 +8,15 @@ import {
   House,
   Inbox,
   LayoutDashboard,
-  type LucideIcon,
   MessageSquareMore,
   PanelRightOpen,
   Plus,
   Presentation,
+  type LucideIcon,
 } from "lucide-react";
 import SidebarLink from "../SidebarLinks";
-import { ActionIcon, Modal, TextInput, Button, Text } from "@mantine/core";
+import { ActionIcon } from "@mantine/core";
+import CreateSpaceModals from "../modals";
 
 type SidebarLinkItem = {
   href?: string;
@@ -94,64 +95,12 @@ export default function Sidebar({
         </div>
       </div>
 
-      <Modal
-        opened={createModalOpen}
-        onClose={() => setCreateModalOpen(false)}
-        title="Create a Space"
-        centered
-      >
-        <Text size="sm" className=" !text-neutral-500">
-          A Space represents teams, departments, or groups, each with its own
-          Lists, workflows, and settings.
-        </Text>
-        <TextInput
-          className="mt-2 text-neutral-600"
-          label="Icon & name"
-          placeholder="e.g., Marketing, Engineering, HR"
-        />
-        <TextInput
-          className="mt-5 text-neutral-600 "
-          label={
-            <span className="text-gray-700">
-              Description{" "}
-              <span className="text-xs text-gray-500">(optional)</span>
-            </span>
-          }
-        />
-        <Button
-          color="teal"
-          fullWidth
-          mt="md"
-          onClick={() => setCreateModalOpen(false)}
-        >
-          Continue
-        </Button>
-      </Modal>
-      <Modal
-        opened={secondModalOpen}
-        onClose={() => setSecondModalOpen(false)}
-        title="Configure Space"
-        centered
-      >
-        <TextInput label="Description" placeholder="Optional description" />
-
-        <div className="flex justify-between mt-lg-0">
-          <Button
-            variant="subtle"
-            color="gray"
-            onClick={() => {
-              setCreateModalOpen(false);
-              setSecondModalOpen(true);
-            }}
-          >
-            Back
-          </Button>
-
-          <Button color="teal" onClick={() => setSecondModalOpen(false)}>
-            Create Space
-          </Button>
-        </div>
-      </Modal>
+      <CreateSpaceModals
+        createModalOpen={createModalOpen}
+        setCreateModalOpen={setCreateModalOpen}
+        secondModalOpen={secondModalOpen}
+        setSecondModalOpen={setSecondModalOpen}
+      />
     </>
   );
 }
