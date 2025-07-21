@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import Sidebar from "./sidebar";
 import { Search } from "lucide-react";
-
+import { useSession } from "next-auth/react";
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { data } = useSession();
+  console.log("Session Data:", data);
 
   return (
     <div>

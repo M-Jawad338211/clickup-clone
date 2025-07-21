@@ -10,6 +10,7 @@ import "./globals.css";
 import AppShell from "@/components/layout/shell";
 
 import { Inter } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({
   display: "swap",
@@ -37,7 +38,9 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased`}>
         <MantineProvider>
           <main>
-            <AppShell>{children}</AppShell>
+            <SessionProvider>
+              <AppShell>{children}</AppShell>
+            </SessionProvider>
           </main>
         </MantineProvider>
       </body>
