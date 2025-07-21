@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Sidebar from "./sidebar";
 import { Search } from "lucide-react";
 import { useSession } from "next-auth/react";
+import AuthButtons from "./AuthButtons";
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { data } = useSession();
@@ -23,6 +24,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             />
           </div>
         </div>
+        <AuthButtons />
       </header>
       <div className="h-[calc(100vh-40px)] flex">
         <Sidebar
