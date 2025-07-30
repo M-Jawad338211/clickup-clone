@@ -52,7 +52,7 @@ export default function Sidebar({
         id="sidebar"
         className={clsx(
           "bg-white h-full w-full transition-all duration-200 overflow-hidden",
-          expanded ? "max-w-52" : "max-w-12"
+          expanded ? "max-w-52" : "max-w-13"
         )}
       >
         <div className="flex justify-end p-2">
