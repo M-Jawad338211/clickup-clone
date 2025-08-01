@@ -108,7 +108,7 @@ const Home = () => {
             <Title order={4}>Personal List</Title>
           </div>
           <Text size="sm" c="dimmed" mt="md">
-            Personal List is a home for your tasks.
+            Personal List is a home of your tasks.
           </Text>
           <Button mt="md" variant="filled" color="teal">
             <Plus size={16} /> Create a Task
