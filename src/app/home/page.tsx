@@ -96,7 +96,7 @@ const Home = () => {
           </Button>
         </Paper>
         <Paper
-          shadow="lg"
+          shadow="md"
           p="sm"
           radius="md"
           withBorder
