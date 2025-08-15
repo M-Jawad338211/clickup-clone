@@ -15,7 +15,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <div className="w-full flex justify-center">
           <div className="relative w-full max-w-md">
             <span className="absolute inset-y-0 mt-2 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-              <Search className="w-4 h-4" />
+              <Search className="w-5 h-4" />
             </span>
             <input
               type="text"
